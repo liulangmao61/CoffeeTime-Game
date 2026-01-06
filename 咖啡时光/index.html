@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>咖啡时光 - 办公摸鱼小游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <svg style="display: none;">
+        <symbol id="pixel-customer-office" viewBox="0 0 16 16">
+            <rect x="6" y="1" width="4" height="4" fill="#FFD93D"/>
+            <rect x="4" y="5" width="8" height="6" fill="#4A90D9"/>
+            <rect x="5" y="11" width="2" height="4" fill="#2C3E50"/>
+            <rect x="9" y="11" width="2" height="4" fill="#2C3E50"/>
+            <rect x="3" y="6" width="1" height="3" fill="#FFD93D"/>
+            <rect x="12" y="6" width="1" height="3" fill="#FFD93D"/>
+        </symbol>
+        <symbol id="pixel-customer-student" viewBox="0 0 16 16">
+            <rect x="5" y="1" width="6" height="3" fill="#2C3E50"/>
+            <rect x="6" y="4" width="4" height="4" fill="#FFD93D"/>
+            <rect x="5" y="8" width="6" height="5" fill="#E74C3C"/>
+            <rect x="3" y="5" width="2" height="4" fill="#8B4513"/>
+            <rect x="11" y="5" width="2" height="4" fill="#8B4513"/>
+            <rect x="4" y="13" width="2" height="2" fill="#2C3E50"/>
+            <rect x="10" y="13" width="2" height="2" fill="#2C3E50"/>
+        </symbol>
+        <symbol id="pixel-customer-lady" viewBox="0 0 16 16">
+            <rect x="5" y="1" width="6" height="2" fill="#2C3E50"/>
+            <rect x="4" y="1" width="2" height="6" fill="#E74C3C"/>
+            <rect x="10" y="1" width="2" height="6" fill="#E74C3C"/>
+            <rect x="6" y="3" width="4" height="4" fill="#FFD93D"/>
+            <rect x="5" y="7" width="6" height="5" fill="#9B59B6"/>
+            <rect x="5" y="12" width="2" height="3" fill="#2C3E50"/>
+            <rect x="9" y="12" width="2" height="3" fill="#2C3E50"/>
+        </symbol>
+        <symbol id="pixel-customer-elder" viewBox="0 0 16 16">
+            <rect x="6" y="1" width="4" height="4" fill="#E0E0E0"/>
+            <rect x="5" y="5" width="6" height="5" fill="#7F8C8D"/>
+            <rect x="3" y="2" width="2" height="2" fill="#E0E0E0"/>
+            <rect x="11" y="2" width="2" height="2" fill="#E0E0E0"/>
+            <rect x="5" y="10" width="6" height="2" fill="#7F8C8D"/>
+            <rect x="5" y="12" width="2" height="3" fill="#2C3E50"/>
+            <rect x="9" y="12" width="2" height="3" fill="#2C3E50"/>
+        </symbol>
+        <symbol id="pixel-customer-tourist" viewBox="0 0 16 16">
+            <rect x="6" y="1" width="4" height="4" fill="#FFD93D"/>
+            <rect x="5" y="5" width="6" height="4" fill="#3498DB"/>
+            <rect x="11" y="3" width="3" height="3" fill="#8B4513"/>
+            <rect x="4" y="6" width="1" height="2" fill="#3498DB"/>
+            <rect x="11" y="6" width="1" height="2" fill="#3498DB"/>
+            <rect x="5" y="9" width="6" height="4" fill="#34495E"/>
+            <rect x="5" y="13" width="2" height="2" fill="#2C3E50"/>
+            <rect x="9" y="13" width="2" height="2" fill="#2C3E50"/>
+        </symbol>
+        <symbol id="pixel-customer-artist" viewBox="0 0 16 16">
+            <rect x="6" y="1" width="4" height="4" fill="#FFD93D"/>
+            <rect x="5" y="5" width="6" height="5" fill="#27AE60"/>
+            <rect x="12" y="2" width="3" height="3" fill="#E74C3C"/>
+            <rect x="2" y="6" width="2" height="4" fill="#E74C3C"/>
+            <rect x="5" y="10" width="6" height="3" fill="#27AE60"/>
+            <rect x="5" y="13" width="2" height="2" fill="#2C3E50"/>
+            <rect x="9" y="13" width="2" height="2" fill="#2C3E50"/>
+            <rect x="1" y="8" width="2" height="2" fill="#9B59B6"/>
+        </symbol>
+        <symbol id="pixel-customer-gamer" viewBox="0 0 16 16">
+            <rect x="6" y="1" width="4" height="4" fill="#FFD93D"/>
+            <rect x="5" y="5" width="6" height="5" fill="#1ABC9C"/>
+            <rect x="3" y="4" width="2" height="3" fill="#1ABC9C"/>
+            <rect x="11" y="4" width="2" height="3" fill="#1ABC9C"/>
+            <rect x="13" y="2" width="2" height="2" fill="#2C3E50"/>
+            <rect x="1" y="2" width="2" height="2" fill="#2C3E50"/>
+            <rect x="5" y="10" width="6" height="3" fill="#1ABC9C"/>
+            <rect x="5" y="13" width="2" height="2" fill="#2C3E50"/>
+            <rect x="9" y="13" width="2" height="2" fill="#2C3E50"/>
+        </symbol>
+        <symbol id="pixel-customer-foodie" viewBox="0 0 16 16">
+            <rect x="6" y="1" width="4" height="4" fill="#FFD93D"/>
+            <rect x="5" y="5" width="6" height="5" fill="#FFFFFF"/>
+            <rect x="5" y="0" width="6" height="1" fill="#FFFFFF"/>
+            <rect x="3" y="1" width="2" height="3" fill="#FFFFFF"/>
+            <rect x="11" y="1" width="2" height="3" fill="#FFFFFF"/>
+            <rect x="5" y="10" width="6" height="3" fill="#FFFFFF"/>
+            <rect x="5" y="13" width="2" height="2" fill="#2C3E50"/>
+            <rect x="9" y="13" width="2" height="2" fill="#2C3E50"/>
+        </symbol>
+    </svg>
+    <div id="game-container">
+        <!-- 登录界面 -->
+        <div id="login-screen" class="screen">
+            <div class="login-box">
+                <div class="logo">
+                    <div class="coffee-icon">☕</div>
+                    <h1>咖啡时光</h1>
+                    <p class="subtitle">放松一下，享受悠闲时光</p>
+                </div>
+                <div class="login-form">
+                    <input type="text" id="username-input" placeholder="输入用户名" maxlength="12">
+                    <button id="login-btn" class="btn btn-primary">开始游戏</button>
+                    <button id="guest-btn" class="btn btn-secondary">游客模式</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主界面 -->
+        <div id="main-screen" class="screen hidden">
+            <div class="header">
+                <div class="user-info">
+                    <span id="user-level">Lv.1</span>
+                    <span id="user-name">咖啡师</span>
+                </div>
+                <div class="resources">
+                    <span class="coin">🪙 <span id="coin-count">100</span></span>
+                    <span class="exp">⭐ <span id="exp-count">0</span></span>
+                </div>
+                <button id="help-btn" class="icon-btn" title="帮助中心">❓</button>
+                <button id="settings-btn" class="icon-btn">⚙️</button>
+            </div>
+            
+            <div class="main-game-layout">
+                <!-- 左侧：咖啡馆场景 -->
+                <div class="coffee-shop-section">
+                    <div class="shop-header">
+                        <h3>☕ 咖啡馆</h3>
+                    </div>
+                    <div id="coffee-shop" class="scene">
+                        <div class="counter">
+                            <div class="coffee-machine">☕</div>
+                            <div class="grinder">⚙️</div>
+                        </div>
+                        
+                        <div class="customer-area">
+                            <div id="customer-queue" class="customer-queue"></div>
+                        </div>
+                        
+                        <div class="work-area">
+                            <div id="active-order" class="active-order hidden">
+                                <div class="order-header">
+                                    <span class="order-title">当前订单</span>
+                                    <button id="cancel-order-btn" class="cancel-order-btn" title="取消订单">×</button>
+                                </div>
+                                <div class="order-info">
+                                    <span id="order-customer-type"></span>
+                                    <span id="order-coffee-name"></span>
+                                    <div id="order-timer" class="timer"></div>
+                                </div>
+                                <div id="order-ingredients-hint" class="order-ingredients-hint"></div>
+                            </div>
+                            <div id="no-order-message" class="no-order-message">
+                                点击顾客接收订单
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：制作区域 -->
+                <div class="make-section">
+                    <div class="make-header">
+                        <h3>制作台</h3>
+                    </div>
+                    <div class="make-content">
+                        <div class="recipe-list-container">
+                            <div class="section-label">选择配方</div>
+                            <div class="recipe-list" id="recipe-list"></div>
+                        </div>
+                        
+                        <div class="coffee-cup-area">
+                            <div class="cup-section">
+                                <div class="section-label">咖啡杯</div>
+                                <div id="coffee-cup" class="coffee-cup">
+                                    <div class="cup-body"></div>
+                                    <div class="cup-handle"></div>
+                                </div>
+                                <div class="cup-contents" id="cup-contents"></div>
+                            </div>
+                            
+                            <div class="ingredients-section">
+                                <div class="section-label">添加原料</div>
+                                <div class="ingredients-bar" id="ingredients-bar"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="make-actions">
+                            <button id="complete-btn" class="btn btn-primary" disabled>完成</button>
+                            <button id="clear-btn" class="btn btn-secondary">清空</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="nav-btn active" data-screen="make">
+                    <span class="nav-icon">☕</span>
+                    <span>制作</span>
+                </button>
+                <button class="nav-btn" data-screen="upgrade">
+                    <span class="nav-icon">⬆️</span>
+                    <span>升级</span>
+                </button>
+                <button class="nav-btn" data-screen="decorate">
+                    <span class="nav-icon">🎨</span>
+                    <span>装饰</span>
+                </button>
+                <button class="nav-btn" data-screen="achievement">
+                    <span class="nav-icon">🏆</span>
+                    <span>成就</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 制作界面 -->
+        <div id="make-screen" class="screen hidden">
+            <div class="panel-header">
+                <button class="back-btn">← 返回</button>
+                <h2>咖啡制作</h2>
+            </div>
+            <div class="make-content">
+                <div class="recipe-list" id="recipe-list-make"></div>
+                <div class="make-area">
+                    <div class="ingredients-bar" id="ingredients-bar-make"></div>
+                    <div class="coffee-cup-area">
+                        <div id="coffee-cup-make" class="coffee-cup">
+                            <div class="cup-body"></div>
+                            <div class="cup-handle"></div>
+                        </div>
+                        <div class="cup-contents" id="cup-contents-make"></div>
+                    </div>
+                    <div class="make-actions">
+                        <button id="complete-btn-make" class="btn btn-primary" disabled>完成</button>
+                        <button id="clear-btn-make" class="btn btn-secondary">清空</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 升级界面 -->
+        <div id="upgrade-screen" class="screen hidden">
+            <div class="panel-header">
+                <button class="back-btn">← 返回</button>
+                <h2>店铺升级</h2>
+            </div>
+            <div class="upgrade-tabs">
+                <button class="tab-btn active" data-tab="shop">店铺</button>
+                <button class="tab-btn" data-tab="equipment">设备</button>
+                <button class="tab-btn" data-tab="employee">员工</button>
+            </div>
+            <div class="upgrade-content">
+                <div id="shop-upgrade" class="upgrade-panel active">
+                    <div class="current-level">
+                        <span>当前等级</span>
+                        <span id="shop-level-display">Lv.1</span>
+                    </div>
+                    <button id="upgrade-shop-btn" class="btn btn-primary">
+                        升级店铺 (<span id="upgrade-shop-cost">200</span> 🪙)
+                    </button>
+                </div>
+                <div id="equipment-upgrade" class="upgrade-panel">
+                    <div class="equipment-list" id="equipment-list"></div>
+                </div>
+                <div id="employee-upgrade" class="upgrade-panel">
+                    <div class="employee-list" id="employee-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 装饰界面 -->
+        <div id="decorate-screen" class="screen hidden">
+            <div class="panel-header">
+                <button class="back-btn">← 返回</button>
+                <h2>装饰咖啡馆</h2>
+            </div>
+            <div class="decorate-content">
+                <div class="decorate-tabs">
+                    <button class="tab-btn active" data-tab="furniture">家具</button>
+                    <button class="tab-btn" data-tab="plant">植物</button>
+                    <button class="tab-btn" data-tab="deco">装饰</button>
+                </div>
+                <div class="decoration-store" id="decoration-store"></div>
+                <div class="decoration-preview">
+                    <div id="preview-area" class="preview-area"></div>
+                    <div class="preview-actions">
+                        <button id="save-layout-btn" class="btn btn-primary">保存布局</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 成就界面 -->
+        <div id="achievement-screen" class="screen hidden">
+            <div class="panel-header">
+                <button class="back-btn">← 返回</button>
+                <h2>成就中心</h2>
+            </div>
+            <div class="achievement-content">
+                <div class="achievement-stats">
+                    <span>已完成: <span id="completed-achievements">0</span>/<span id="total-achievements">0</span></span>
+                </div>
+                <div class="achievement-list" id="achievement-list"></div>
+            </div>
+        </div>
+
+        <!-- 设置弹窗 -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>设置</h3>
+                <div class="setting-item">
+                    <span>音效</span>
+                    <label class="switch">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>背景音乐</span>
+                    <label class="switch">
+                        <input type="checkbox" id="bgm-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button id="reset-game-btn" class="btn btn-danger">重置游戏</button>
+                <button id="close-settings-btn" class="btn btn-secondary">关闭</button>
+            </div>
+        </div>
+
+        <!-- 消息提示 -->
+        <div id="toast" class="toast hidden"></div>
+
+        <!-- 成就弹窗 -->
+        <div id="achievement-popup" class="achievement-popup hidden">
+            <div class="popup-content">
+                <span class="popup-icon">🏆</span>
+                <span class="popup-title">成就解锁!</span>
+                <span id="popup-achievement-name" class="popup-name"></span>
+            </div>
+        </div>
+
+        <!-- 帮助面板 -->
+        <div id="help-panel" class="help-panel hidden">
+            <div class="help-overlay"></div>
+            <div class="help-modal">
+                <div class="help-header">
+                    <h3>☕ 帮助中心</h3>
+                    <button id="close-help-btn" class="close-btn">×</button>
+                </div>
+                <div class="help-body">
+                    <div class="help-nav">
+                        <button class="help-nav-item active" data-section="basics">📖 基础操作</button>
+                        <button class="help-nav-item" data-section="recipes">☕ 咖啡配方</button>
+                        <button class="help-nav-item" data-section="materials">🫘 原材料</button>
+                        <button class="help-nav-item" data-section="tutorial">🎯 新手引导</button>
+                        <button class="help-nav-item" data-section="faq">❓ 常见问题</button>
+                        <button class="help-nav-item" data-section="tips">💡 实用技巧</button>
+                    </div>
+                    <div class="help-content">
+                        <div id="help-basics" class="help-section active">
+                            <div class="help-section-title">📖 游戏基础操作指南</div>
+                            
+                            <div class="help-subsection">
+                                <div class="help-subsection-title">🎮 界面布局说明</div>
+                                <p>主界面由顶部信息栏、中间场景区和底部导航栏三部分组成</p>
+                                <ul class="help-list">
+                                    <li>👤 用户信息 - 显示当前等级和名称</li>
+                                    <li>💰 金币资源 - 用于购买升级</li>
+                                    <li>⭐ 经验等级 - 决定店铺等级</li>
+                                    <li>☕ 收银台 - 顾客点单区域</li>
+                                    <li>👥 顾客队列 - 等待服务的顾客</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="help-subsection">
+                                <div class="help-subsection-title">👆 基础操作流程</div>
+                                <ol class="help-list">
+                                    <li><strong>接收订单</strong> - 点击出现的顾客查看需求</li>
+                                    <li><strong>选择配方</strong> - 进入制作界面选择咖啡种类</li>
+                                    <li><strong>添加材料</strong> - 点击原料加入杯中</li>
+                                    <li><strong>完成制作</strong> - 点击完成按钮交付咖啡</li>
+                                    <li><strong>收取奖励</strong> - 获得金币和经验</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="help-subsection">
+                                <div class="help-subsection-title">⌨️ 快捷操作</div>
+                                <div class="shortcut-grid">
+                                    <span class="shortcut-key">Enter</span> 确认/登录
+                                    <span class="shortcut-key">Esc</span> 关闭弹窗
+                                    <span class="shortcut-key">Del</span> 清空杯子
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="help-recipes" class="help-section">
+                            <div class="help-section-title">☕ 咖啡制作系统</div>
+                            
+                            <div class="recipe-grid">
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">☕</span>
+                                    <span class="recipe-name">浓缩咖啡</span>
+                                    <span class="recipe-level">Lv.1</span>
+                                    <span class="recipe-price">15金币</span>
+                                    <span class="recipe-materials">🫘 + 💧</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">🥤</span>
+                                    <span class="recipe-name">美式咖啡</span>
+                                    <span class="recipe-level">Lv.1</span>
+                                    <span class="recipe-price">20金币</span>
+                                    <span class="recipe-materials">🫘 + 💧 + 💧</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">🥛</span>
+                                    <span class="recipe-name">拿铁</span>
+                                    <span class="recipe-level">Lv.2</span>
+                                    <span class="recipe-price">25金币</span>
+                                    <span class="recipe-materials">🫘 + 🥛</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">☕</span>
+                                    <span class="recipe-name">卡布奇诺</span>
+                                    <span class="recipe-level">Lv.3</span>
+                                    <span class="recipe-price">28金币</span>
+                                    <span class="recipe-materials">🫘 + 🥛 + 🥛</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">🍫</span>
+                                    <span class="recipe-name">摩卡</span>
+                                    <span class="recipe-level">Lv.4</span>
+                                    <span class="recipe-price">32金币</span>
+                                    <span class="recipe-materials">🫘 + 🥛 + 🍫</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">🥤</span>
+                                    <span class="recipe-name">澳白</span>
+                                    <span class="recipe-level">Lv.5</span>
+                                    <span class="recipe-price">30金币</span>
+                                    <span class="recipe-materials">🫘 + 🥛 + 🍯</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">🍯</span>
+                                    <span class="recipe-name">焦糖玛奇朵</span>
+                                    <span class="recipe-level">Lv.6</span>
+                                    <span class="recipe-price">35金币</span>
+                                    <span class="recipe-materials">🫘 + 🥛 + 🍬</span>
+                                </div>
+                                <div class="recipe-item">
+                                    <span class="recipe-icon">🍵</span>
+                                    <span class="recipe-name">抹茶拿铁</span>
+                                    <span class="recipe-level">Lv.7</span>
+                                    <span class="recipe-price">30金币</span>
+                                    <span class="recipe-materials">🍵 + 🥛 + 🍯</span>
+                                </div>
+                            </div>
+                            
+                            <div class="quality-tips">
+                                <div class="quality-title">⭐ 品质影响因素</div>
+                                <ul class="help-list">
+                                    <li><strong>制作速度</strong> - 10秒内完成可获得额外奖励</li>
+                                    <li><strong>配方准确度</strong> - 严格按照配方添加材料</li>
+                                    <li><strong>顾客类型</strong> - 艺术家和美食家出手大方</li>
+                                    <li><strong>店铺等级</strong> - 高等级解锁高级配方</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div id="help-materials" class="help-section">
+                            <div class="help-section-title">🫘 原材料收集指南</div>
+                            
+                            <div class="help-subsection">
+                                <div class="help-subsection-title">🔄 材料刷新时间</div>
+                                <div class="material-grid">
+                                    <div class="material-item">
+                                        <span>🫘</span>
+                                        <span>咖啡豆</span>
+                                        <span class="refresh-time">5秒</span>
+                                    </div>
+                                    <div class="material-item">
+                                        <span>💧</span>
+                                        <span>水</span>
+                                        <span class="refresh-time">无限</span>
+                                    </div>
+                                    <div class="material-item">
+                                        <span>🥛</span>
+                                        <span>牛奶</span>
+                                        <span class="refresh-time">8秒</span>
+                                    </div>
+                                    <div class="material-item">
+                                        <span>🍫</span>
+                                        <span>巧克力</span>
+                                        <span class="refresh-time">10秒</span>
+                                    </div>
+                                    <div class="material-item">
+                                        <span>🍯</span>
+                                        <span>糖浆</span>
+                                        <span class="refresh-time">12秒</span>
+                                    </div>
+                                    <div class="material-item">
+                                        <span>🍬</span>
+                                        <span>焦糖</span>
+                                        <span class="refresh-time">15秒</span>
+                                    </div>
+                                    <div class="material-item">
+                                        <span>🍵</span>
+                                        <span>抹茶粉</span>
+                                        <span class="refresh-time">20秒</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="help-subsection">
+                                <div class="help-subsection-title">🌤️ 天气影响</div>
+                                <div class="weather-grid">
+                                    <div class="weather-item">
+                                        <span>☀️ 晴天</span>
+                                        <span class="positive">冰块+50%</span>
+                                    </div>
+                                    <div class="weather-item">
+                                        <span>🌧️ 雨天</span>
+                                        <span class="positive">牛奶+30%</span>
+                                    </div>
+                                    <div class="weather-item">
+                                        <span>❄️ 雪天</span>
+                                        <span class="positive">糖浆+40%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="help-tutorial" class="help-section">
+                            <div class="help-section-title">🎯 新手引导</div>
+                            
+                            <div class="tutorial-list">
+                                <div class="tutorial-item">
+                                    <div class="tutorial-step">1</div>
+                                    <div class="tutorial-content">
+                                        <div class="tutorial-title">创建角色</div>
+                                        <div class="tutorial-desc">输入用户名开始游戏</div>
+                                        <div class="tutorial-reward">🎁 奖励：100金币</div>
+                                    </div>
+                                </div>
+                                <div class="tutorial-item">
+                                    <div class="tutorial-step">2</div>
+                                    <div class="tutorial-content">
+                                        <div class="tutorial-title">制作第一杯咖啡</div>
+                                        <div class="tutorial-desc">选择浓缩咖啡，添加咖啡豆和水</div>
+                                        <div class="tutorial-reward">🎁 奖励：50金币 + 成就</div>
+                                    </div>
+                                </div>
+                                <div class="tutorial-item">
+                                    <div class="tutorial-step">3</div>
+                                    <div class="tutorial-content">
+                                        <div class="tutorial-title">赚取200金币</div>
+                                        <div class="tutorial-desc">完成多个订单积累资金</div>
+                                        <div class="tutorial-reward">🎁 奖励：解锁美式咖啡</div>
+                                    </div>
+                                </div>
+                                <div class="tutorial-item">
+                                    <div class="tutorial-step">4</div>
+                                    <div class="tutorial-content">
+                                        <div class="tutorial-title">升级店铺</div>
+                                        <div class="tutorial-desc">累计100经验升级店铺</div>
+                                        <div class="tutorial-reward">🎁 奖励：解锁拿铁 + 容量+1</div>
+                                    </div>
+                                </div>
+                                <div class="tutorial-item">
+                                    <div class="tutorial-step">5</div>
+                                    <div class="tutorial-content">
+                                        <div class="tutorial-title">升级设备</div>
+                                        <div class="tutorial-desc">提升制作效率</div>
+                                        <div class="tutorial-reward">🎁 奖励：速度+10%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="help-faq" class="help-section">
+                            <div class="help-section-title">❓ 常见问题</div>
+                            
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>顾客不来了怎么办？</span>
+                                        <span class="faq-icon">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        顾客生成有冷却时间，请耐心等待。可通过升级店铺提升顾客上限和生成频率。
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>配方记错了怎么办？</span>
+                                        <span class="faq-icon">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        点击"清空杯子"按钮重新制作。建议先查看配方表熟悉配料比例。
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>金币不够用怎么办？</span>
+                                        <span class="faq-icon">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        1. 优先服务高价值顾客<br>
+                                        2. 在高耐心时完成获得小费<br>
+                                        3. 追求制作速度<br>
+                                        4. 解锁成就获得奖励
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>经验值怎么获得？</span>
+                                        <span class="faq-icon">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        - 完成订单：+5经验<br>
+                                        - 顾客满意：+2经验<br>
+                                        - 完美制作：+3经验
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>游戏进度会丢失吗？</span>
+                                        <span class="faq-icon">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        游戏数据保存在浏览器本地存储中，清除缓存会导致丢失。建议定期截图备份。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="help-tips" class="help-section">
+                            <div class="help-section-title">💡 实用技巧</div>
+                            
+                            <div class="tips-container">
+                                <div class="tips-section">
+                                    <div class="tips-title">🎯 高效策略</div>
+                                    <ul class="help-list">
+                                        <li><strong>顾客优先级</strong>：美食家 > 艺术家 > 游客 > 玩家 > 白领</li>
+                                        <li><strong>升级顺序</strong>：咖啡机 > 磨豆机 > 奶泡机</li>
+                                        <li><strong>金币管理</strong>：保留20%金币作为周转资金</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="tips-section">
+                                    <div class="tips-title">⚠️ 常见错误</div>
+                                    <ul class="help-list">
+                                        <li>避免盲目升级导致资金链断裂</li>
+                                        <li>不要忽略成就奖励</li>
+                                        <li>不要一次性囤积过多材料</li>
+                                        <li>高峰期优先处理低耐心顾客</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="tips-section">
+                                    <div class="tips-title">🔓 隐藏内容</div>
+                                    <ul class="help-list">
+                                        <li>集齐8种配方解锁"咖啡大师"称号</li>
+                                        <li>单日服务50位顾客触发隐藏事件</li>
+                                        <li>连续7天登录获得限量装饰</li>
+                                        <li>累计收入10万金币解锁"咖啡帝国"</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/help.js"></script>
+</body>
+</html>

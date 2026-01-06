@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>咖啡时光 - 帮助中心</title>
+    <link rel="stylesheet" href="css/help.css">
+</head>
+<body>
+    <div id="help-container">
+        <div class="help-header">
+            <button class="back-btn" onclick="window.closeHelp()">
+                <span>←</span> 返回游戏
+            </button>
+            <h1>☕ 咖啡时光 - 帮助中心</h1>
+            <div class="search-box">
+                <input type="text" id="help-search" placeholder="搜索问题..." oninput="searchHelp()">
+            </div>
+        </div>
+
+        <div class="help-content">
+            <div class="nav-sidebar">
+                <button class="nav-item active" data-section="basics">
+                    <span class="nav-icon">📖</span>
+                    <span>基础操作</span>
+                </button>
+                <button class="nav-item" data-section="recipes">
+                    <span class="nav-icon">☕</span>
+                    <span>咖啡配方</span>
+                </button>
+                <button class="nav-item" data-section="materials">
+                    <span class="nav-icon">🫘</span>
+                    <span>原材料收集</span>
+                </button>
+                <button class="nav-item" data-section="tutorial">
+                    <span class="nav-icon">🎯</span>
+                    <span>新手引导</span>
+                </button>
+                <button class="nav-item" data-section="faq">
+                    <span class="nav-icon">❓</span>
+                    <span>常见问题</span>
+                </button>
+                <button class="nav-item" data-section="tips">
+                    <span class="nav-icon">💡</span>
+                    <span>实用技巧</span>
+                </button>
+            </div>
+
+            <div class="main-content">
+                <div id="basics-section" class="content-section active">
+                    <div class="section-title">
+                        <span class="section-icon">📖</span>
+                        游戏基础操作指南
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">🎮 界面布局说明</div>
+                        <div class="interface-layout">
+                            <div class="interface-grid">
+                                <div class="interface-item">
+                                    <div class="icon">👤</div>
+                                    <div class="label">用户信息</div>
+                                </div>
+                                <div class="interface-item">
+                                    <div class="icon">💰</div>
+                                    <div class="label">金币资源</div>
+                                </div>
+                                <div class="interface-item">
+                                    <div class="icon">⭐</div>
+                                    <div class="label">经验等级</div>
+                                </div>
+                                <div class="interface-item">
+                                    <div class="icon">☕</div>
+                                    <div class="label">收银台</div>
+                                </div>
+                                <div class="interface-item">
+                                    <div class="icon">👥</div>
+                                    <div class="label">顾客队列</div>
+                                </div>
+                                <div class="interface-item">
+                                    <div class="icon">📋</div>
+                                    <div class="label">当前订单</div>
+                                </div>
+                            </div>
+                            <p style="font-size: 13px; color: var(--color-text-muted); text-align: center;">
+                                主界面由顶部信息栏、中间场景区和底部导航栏三部分组成
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">👆 基础操作流程</div>
+                        <div class="control-steps">
+                            <div class="control-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">接收顾客订单</div>
+                                    <div class="step-desc">点击或触摸出现的顾客，查看其订单需求，包括咖啡类型和所需配料</div>
+                                </div>
+                            </div>
+                            <div class="control-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">选择咖啡配方</div>
+                                    <div class="step-desc">进入制作界面，从左侧配方列表中选择需要制作的咖啡种类</div>
+                                </div>
+                            </div>
+                            <div class="control-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">添加原材料</div>
+                                    <div class="step-desc">点击下方的原材料图标，依次加入杯中，注意配方的精确配比</div>
+                                </div>
+                            </div>
+                            <div class="control-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">完成订单交付</div>
+                                    <div class="step-desc">确认配料正确后，点击"完成制作"按钮，将咖啡递给顾客</div>
+                                </div>
+                            </div>
+                            <div class="control-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <div class="step-title">收取奖励</div>
+                                    <div class="step-desc">根据制作速度、顾客耐心值获得金币和小费，升级店铺和解锁新配方</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">⌨️ 快捷操作说明</div>
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <span class="keyboard-key">Enter</span>
+                                <span class="shortcut-desc">确认/登录</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="keyboard-key">Esc</span>
+                                <span class="shortcut-desc">关闭弹窗</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="keyboard-key">空格</span>
+                                <span class="shortcut-desc">快速制作</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="keyboard-key">Del</span>
+                                <span class="shortcut-desc">清空杯子</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="keyboard-key">1-6</span>
+                                <span class="shortcut-desc">选择配方</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="keyboard-key">S</span>
+                                <span class="shortcut-desc">打开设置</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="recipes-section" class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">☕</span>
+                        咖啡制作系统详解
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">📋 完整配方数据库</div>
+                        <table class="recipe-table">
+                            <thead>
+                                <tr>
+                                    <th>饮品</th>
+                                    <th>名称</th>
+                                    <th>等级</th>
+                                    <th>所需材料</th>
+                                    <th>售价</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="recipe-icon">☕</span></td>
+                                    <td class="recipe-name">浓缩咖啡</td>
+                                    <td><span class="level-badge">Lv.1</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">💧 水</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">15 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">🥤</span></td>
+                                    <td class="recipe-name">美式咖啡</td>
+                                    <td><span class="level-badge">Lv.1</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">💧 水</span>
+                                            <span class="ingredient-tag">💧 水</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">20 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">🥛</span></td>
+                                    <td class="recipe-name">拿铁</td>
+                                    <td><span class="level-badge">Lv.2</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">25 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">☕</span></td>
+                                    <td class="recipe-name">卡布奇诺</td>
+                                    <td><span class="level-badge">Lv.3</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">28 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">🍫</span></td>
+                                    <td class="recipe-name">摩卡</td>
+                                    <td><span class="level-badge">Lv.4</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                            <span class="ingredient-tag">🍫 巧克力</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">32 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">🥤</span></td>
+                                    <td class="recipe-name">澳白</td>
+                                    <td><span class="level-badge">Lv.5</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                            <span class="ingredient-tag">🍯 糖浆</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">30 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">🍯</span></td>
+                                    <td class="recipe-name">焦糖玛奇朵</td>
+                                    <td><span class="level-badge">Lv.6</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🫘 咖啡豆</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                            <span class="ingredient-tag">🍬 焦糖</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">35 金币</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="recipe-icon">🍵</span></td>
+                                    <td class="recipe-name">抹茶拿铁</td>
+                                    <td><span class="level-badge">Lv.7</span></td>
+                                    <td>
+                                        <div class="ingredients-list">
+                                            <span class="ingredient-tag">🍵 抹茶粉</span>
+                                            <span class="ingredient-tag">🥛 牛奶</span>
+                                            <span class="ingredient-tag">🍯 糖浆</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="price-tag">30 金币</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">📊 制作流程示意图</div>
+                        <div class="flow-diagram">
+                            <div class="flow-step">
+                                <span class="flow-icon">📝</span>
+                                <span class="flow-label">接收订单</span>
+                            </div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">
+                                <span class="flow-icon">☕</span>
+                                <span class="flow-label">选择配方</span>
+                            </div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">
+                                <span class="flow-icon">🫘</span>
+                                <span class="flow-label">添加原料</span>
+                            </div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">
+                                <span class="flow-icon">✅</span>
+                                <span class="flow-label">完成制作</span>
+                            </div>
+                            <span class="flow-arrow">→</span>
+                            <div class="flow-step">
+                                <span class="flow-icon">💰</span>
+                                <span class="flow-label">收取报酬</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">⭐ 品质影响因素</div>
+                        <div class="quality-factors">
+                            <div class="factor-card">
+                                <div class="factor-title">
+                                    <span>⚡</span> 制作速度
+                                </div>
+                                <div class="factor-desc">在顾客耐心耗尽前完成可获得额外奖励，10秒内完成获得"闪电侠"成就</div>
+                            </div>
+                            <div class="factor-card">
+                                <div class="factor-title">
+                                    <span>🎯</span> 配方准确度
+                                </div>
+                                <div class="factor-desc">严格按照配方添加材料，错误的配方会导致制作失败</div>
+                            </div>
+                            <div class="factor-card">
+                                <div class="factor-title">
+                                    <span>👥</span> 顾客类型
+                                </div>
+                                <div class="factor-desc">不同顾客有不同耐心值和的小费比例，艺术家和美食家出手大方</div>
+                            </div>
+                            <div class="factor-card">
+                                <div class="factor-title">
+                                    <span>🏪</span> 店铺等级
+                                </div>
+                                <div class="factor-desc">高等级店铺解锁高级配方，提升服务容量和顾客上限</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="materials-section" class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">🫘</span>
+                        原材料收集指南
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">🗺️ 材料获取地图</div>
+                        <div class="map-container">
+                            <div class="map-title">☕ 咖啡时光原材料分布图</div>
+                            <div class="material-points">
+                                <div class="map-point">
+                                    <div class="map-marker">1</div>
+                                    <div class="point-name">咖啡豆仓库</div>
+                                    <div class="point-items">🫘 咖啡豆</div>
+                                </div>
+                                <div class="map-point">
+                                    <div class="map-marker">2</div>
+                                    <div class="point-name">水源供应</div>
+                                    <div class="point-items">💧 纯净水</div>
+                                </div>
+                                <div class="map-point">
+                                    <div class="map-marker">3</div>
+                                    <div class="point-name">奶牛牧场</div>
+                                    <div class="point-items">🥛 新鲜牛奶</div>
+                                </div>
+                                <div class="map-point">
+                                    <div class="map-marker">4</div>
+                                    <div class="point-name">糖果商店</div>
+                                    <div class="point-items">🍫🍬 巧克力和焦糖</div>
+                                </div>
+                                <div class="map-point">
+                                    <div class="map-marker">5</div>
+                                    <div class="point-name">日式茶屋</div>
+                                    <div class="point-items">🍵 抹茶粉</div>
+                                </div>
+                                <div class="map-point">
+                                    <div class="map-marker">6</div>
+                                    <div class="point-name">调料专区</div>
+                                    <div class="point-items">🍯🧁🍵 糖浆奶油</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">🔄 刷新周期说明</div>
+                        <div class="refresh-info">
+                            <div class="refresh-title">⏰ 材料刷新时间表</div>
+                            <div class="refresh-cycles">
+                                <span class="cycle-tag">🫘 咖啡豆：每5秒刷新</span>
+                                <span class="cycle-tag">💧 水：无限供应</span>
+                                <span class="cycle-tag">🥛 牛奶：每8秒刷新</span>
+                                <span class="cycle-tag">🍫 巧克力：每10秒刷新</span>
+                                <span class="cycle-tag">🍯 糖浆：每12秒刷新</span>
+                                <span class="cycle-tag">🍬 焦糖：每15秒刷新</span>
+                                <span class="cycle-tag">🍵 抹茶粉：每20秒刷新</span>
+                                <span class="cycle-tag">🧁 奶油：每15秒刷新</span>
+                                <span class="cycle-tag">🧊 冰块：无限供应</span>
+                                <span class="cycle-tag">🌿 肉桂：每25秒刷新</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">🌤️ 天气与时间影响</div>
+                        <div class="weather-effects">
+                            <div class="weather-card">
+                                <div class="weather-icon">☀️</div>
+                                <div class="weather-name">晴天</div>
+                                <div class="weather-effect positive">冰块产量+50%</div>
+                                <div class="weather-effect">咖啡豆产量正常</div>
+                            </div>
+                            <div class="weather-card">
+                                <div class="weather-icon">🌧️</div>
+                                <div class="weather-name">雨天</div>
+                                <div class="weather-effect positive">牛奶产量+30%</div>
+                                <div class="weather-effect">咖啡豆产量-20%</div>
+                            </div>
+                            <div class="weather-card">
+                                <div class="weather-icon">❄️</div>
+                                <div class="weather-name">雪天</div>
+                                <div class="weather-effect positive">糖浆产量+40%</div>
+                                <div class="weather-effect">牛奶产量-30%</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px; padding: 12px; background: var(--color-surface-elevated); border-radius: var(--radius-md);">
+                            <p style="font-size: 13px; color: var(--color-text-secondary);">
+                                <strong style="color: var(--color-text-primary);">💡 收集建议：</strong>
+                                优先收集高频使用材料（咖啡豆、牛奶），雨天多囤牛奶，雪天多囤糖浆，晴天主推冰咖啡饮品。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tutorial-section" class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">🎯</span>
+                        新手任务流程指引
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">🚀 入门任务序列</div>
+                        
+                        <div class="tutorial-step">
+                            <div class="step-screenshot">
+                                <span class="screenshot-icon">👤</span>
+                                <span class="screenshot-label">步骤 1</span>
+                            </div>
+                            <div class="step-details">
+                                <span class="step-task">任务 1</span>
+                                <div class="step-goal">创建你的咖啡师角色</div>
+                                <div class="step-instruction">
+                                    输入2-10个字符的用户名，点击"开始营业"按钮进入游戏。
+                                    选择喜欢的咖啡师名称，开启你的咖啡馆之旅！
+                                </div>
+                                <div class="step-reward">🎁 奖励：新手礼包（内含100金币）</div>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-screenshot">
+                                <span class="screenshot-icon">☕</span>
+                                <span class="screenshot-label">步骤 2</span>
+                            </div>
+                            <div class="step-details">
+                                <span class="step-task">任务 2</span>
+                                <div class="step-goal">制作第一杯咖啡</div>
+                                <div class="step-instruction">
+                                    等待顾客出现后点击进入制作界面。选择"浓缩咖啡"配方，
+                                    依次添加咖啡豆和水，点击完成制作并交付给顾客。
+                                </div>
+                                <div class="step-reward">🎁 奖励：成就「第一杯咖啡」+ 50金币</div>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-screenshot">
+                                <span class="screenshot-icon">💰</span>
+                                <span class="screenshot-label">步骤 3</span>
+                            </div>
+                            <div class="step-details">
+                                <span class="step-task">任务 3</span>
+                                <div class="step-goal">赚取200金币</div>
+                                <div class="step-instruction">
+                                    完成多个咖啡订单，积累金币。注意顾客耐心值，
+                                    在倒计时结束前完成制作可获得额外小费。
+                                </div>
+                                <div class="step-reward">🎁 奖励：解锁「美式咖啡」配方</div>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-screenshot">
+                                <span class="screenshot-icon">⬆️</span>
+                                <span class="screenshot-label">步骤 4</span>
+                            </div>
+                            <div class="step-details">
+                                <span class="step-task">任务 4</span>
+                                <div class="step-goal">升级店铺至2级</div>
+                                <div class="step-instruction">
+                                    累计获得100经验值自动升级。制作咖啡、顾客满意都可获得经验。
+                                    升级后可解锁更多顾客容量和新配方。
+                                </div>
+                                <div class="step-reward">🎁 奖励：解锁「拿铁」配方 + 店铺容量+1</div>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-screenshot">
+                                <span class="screenshot-icon">⚙️</span>
+                                <span class="screenshot-label">步骤 5</span>
+                            </div>
+                            <div class="step-details">
+                                <span class="step-task">任务 5</span>
+                                <div class="step-goal">升级第一台设备</div>
+                                <div class="step-instruction">
+                                    进入升级界面，选择"基础咖啡机"进行升级。
+                                    设备升级可提升制作效率和顾客满意度。
+                                </div>
+                                <div class="step-reward">🎁 奖励：制作速度提升10%</div>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-step">
+                            <div class="step-screenshot">
+                                <span class="screenshot-icon">🏆</span>
+                                <span class="screenshot-label">步骤 6</span>
+                            </div>
+                            <div class="step-details">
+                                <span class="step-task">任务 6</span>
+                                <div class="step-goal">解锁首个成就</div>
+                                <div class="step-instruction">
+                                    持续游玩并完成各项挑战，系统会自动检测成就条件。
+                                    达成条件后点击成就界面领取奖励。
+                                </div>
+                                <div class="step-reward">🎁 奖励：成就奖励 + 稀有装饰品</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="faq-section" class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">❓</span>
+                        常见问题解答
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">❓ 疑难问题汇总</div>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        顾客不来了怎么办？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                顾客生成有冷却时间，请耐心等待几秒。可通过升级店铺提升顾客上限和生成频率。
+                                                另外，检查是否已开启声音提示功能，顾客到来时会有音效提醒。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        配方记错了怎么办？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                点击"清空杯子"按钮可以重新开始制作。
+                                                建议在制作前先查看帮助中心的配方表，熟悉各种咖啡的配料比例。
+                                                部分复杂配方需要精确配比，容错率较低。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        金币不够用怎么办？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                1. 优先完成高价值订单（艺术家、美食家顾客）<br>
+                                                2. 在顾客耐心值较高时完成制作可获得小费<br>
+                                                3. 追求制作速度，10秒内完成有速度加成<br>
+                                                4. 解锁成就可获得大量金币奖励<br>
+                                                5. 合理使用装饰品提升顾客满意度和消费意愿
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        经验值怎么获得？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                经验值主要通过以下途径获得：<br>
+                                                - 完成咖啡订单：每杯咖啡+5经验<br>
+                                                - 顾客满意离开：+2经验<br>
+                                                - 完美制作（无失误）：+3经验<br>
+                                                - 成就奖励：一次性大量经验<br>
+                                                店铺等级越高，升级所需经验越多。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        材料一直显示不足？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                部分材料有刷新时间限制，请等待刷新后再尝试。
+                                                建议同时制作多个不同配方的咖啡，提高材料使用效率。
+                                                如果金币充足，可以在升级界面购买自动补货装置。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        游戏进度会丢失吗？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                游戏数据自动保存在浏览器本地存储中，不会因刷新而丢失。
+                                                但请注意：清除浏览器缓存或使用无痕模式会导致数据丢失。
+                                                建议定期截图备份重要数据。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        如何重置游戏？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                进入设置界面，点击"重置游戏"按钮。
+                                                系统会弹出确认提示，重置后所有数据将不可恢复。
+                                                建议在重置前确认是否真的需要重新开始。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <span class="accordion-question">
+                                        <span class="q-icon">Q</span>
+                                        音效听不到怎么办？
+                                    </span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-answer">
+                                        <div class="answer-content">
+                                            <span class="a-icon">A</span>
+                                            <div class="answer-text">
+                                                1. 检查系统音量是否开启<br>
+                                                2. 在设置界面确认音效开关已打开<br>
+                                                3. 确认浏览器没有静音网页声音<br>
+                                                4. 部分浏览器需要用户交互后才能播放声音<br>
+                                                5. 尝试点击页面任意位置后等待声音
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tips-section" class="content-section">
+                    <div class="section-title">
+                        <span class="section-icon">💡</span>
+                        实用技巧与策略
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">🎯 高效游戏策略</div>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>⚡</span> 快速制作技巧
+                                </div>
+                                <div class="tip-content">
+                                    记住常用配方的配料顺序，形成肌肉记忆。
+                                    优先制作简单的咖啡（浓缩、美式）积累金币，
+                                    再挑战复杂的特调饮品。
+                                </div>
+                            </div>
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>👥</span> 顾客优先级
+                                </div>
+                                <div class="tip-content">
+                                    优先服务高小费顾客：美食家 > 艺术家 > 游客 > 玩家 > 白领 > 上班族 > 老人 > 学生。
+                                    游客和艺术家虽然耐心一般，但小费丰厚。
+                                </div>
+                            </div>
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>💰</span> 金币管理
+                                </div>
+                                <div class="tip-content">
+                                    前期优先升级咖啡机提高效率，中期投资奶泡机提升品质，
+                                    后期根据主力产品针对性升级。避免金币闲置，
+                                    装饰品虽然好看但要量力而行。
+                                </div>
+                            </div>
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>📈</span> 升级顺序
+                                </div>
+                                <div class="tip-content">
+                                    推荐升级顺序：咖啡机 > 磨豆机 > 奶泡机 > 烤箱 > 制冰机 > 展示柜。
+                                    前三者直接影响核心制作效率，是前期重点。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <div class="subsection-title">⚠️ 常见错误与避免</div>
+                        <div class="tips-grid">
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>❌</span> 盲目升级
+                                </div>
+                                <div class="tip-content">
+                                    避免在金币不足时强行升级设备，
+                                    导致资金链断裂。
+                                    建议保留20%的金币作为周转资金。
+                                </div>
+                            </div>
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>❌</span> 忽略成就
+                                </div>
+                                <div class="tip-content">
+                                    成就奖励丰厚且有时效性，
+                                    达成条件后及时领取。
+                                    部分成就有连续登录要求，
+                                    不要中断记录。
+                                </div>
+                            </div>
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>❌</span> 材料浪费
+                                </div>
+                                <div class="tip-content">
+                                    不要一次性囤积过多易变质材料，
+                                    根据近期订单需求合理采购。
+                                    注意材料刷新时间，合理安排收集顺序。
+                                </div>
+                            </div>
+                            <div class="tip-card">
+                                <div class="tip-title">
+                                    <span>❌</span> 忽视顾客耐心
+                                </div>
+                                <div class="tip-content">
+                                    玩家和学生顾客耐心极低（20-25秒），
+                                    容易流失。高峰期优先处理这类订单，
+                                    避免因等待过久失去顾客。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden-content">
+                        <div class="hidden-title">
+                            <span>🔓</span> 隐藏内容发现指南
+                        </div>
+                        <ul class="hidden-list">
+                            <li>
+                                <span>☕</span>
+                                <span>集齐所有8种咖啡配方可解锁「咖啡大师」称号</span>
+                            </li>
+                            <li>
+                                <span>👨‍🍳</span>
+                                <span>单日服务50位顾客可触发"美食家考察"隐藏事件</span>
+                            </li>
+                            <li>
+                                <span>🎨</span>
+                                <span>获得10个成就后，艺术家顾客概率翻倍</span>
+                            </li>
+                            <li>
+                                <span>🏆</span>
+                                <span>连续7天登录可获得限量版"七色杯"装饰</span>
+                            </li>
+                            <li>
+                                <span>💎</span>
+                                <span>累计收入突破10万金币解锁"咖啡帝国"成就</span>
+                            </li>
+                            <li>
+                                <span>🌟</span>
+                                <span>在10秒内完成10单可解锁"闪电侠"专属头像框</span>
+                            </li>
+                            <li>
+                                <span>🎵</span>
+                                <span>购买音乐盒后随机触发"咖啡音乐会"活动</span>
+                            </li>
+                            <li>
+                                <span>🌸</span>
+                                <span>雨天装饰樱花树有隐藏对话彩蛋</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="quick-reference">
+                        <div class="ref-card">
+                            <div class="ref-icon">👥</div>
+                            <div class="ref-title">顾客上限</div>
+                            <div class="ref-value">初始 3 人</div>
+                        </div>
+                        <div class="ref-card">
+                            <div class="ref-icon">☕</div>
+                            <div class="ref-title">配方数量</div>
+                            <div class="ref-value">8 种</div>
+                        </div>
+                        <div class="ref-card">
+                            <div class="ref-icon">🏆</div>
+                            <div class="ref-title">成就数量</div>
+                            <div class="ref-value">12 个</div>
+                        </div>
+                        <div class="ref-card">
+                            <div class="ref-icon">⚙️</div>
+                            <div class="ref-title">可升级设备</div>
+                            <div class="ref-value">6 种</div>
+                        </div>
+                        <div class="ref-card">
+                            <div class="ref-icon">🪴</div>
+                            <div class="ref-title">装饰物品</div>
+                            <div class="ref-value">12 种</div>
+                        </div>
+                        <div class="ref-card">
+                            <div class="ref-icon">⭐</div>
+                            <div class="ref-title">最高等级</div>
+                            <div class="ref-value">10 级</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-footer">
+            <p>☕ 咖啡时光 - 享受悠闲的咖啡馆时光</p>
+            <p style="margin-top: 8px; font-size: 12px;">有问题？随时查看帮助中心或联系客服</p>
+        </div>
+    </div>
+
+    <script src="js/help.js"></script>
+</body>
+</html>
