@@ -1,5 +1,9 @@
 let GameState = loadOrInitGameState();
 
+const TIME_PER_INGREDIENT = 3;
+const PATIENCE_UPDATE_INTERVAL = 100;
+const TOAST_DURATION = 3000;
+
 function safeAddEventListener(elementOrSelector, eventType, handler) {
     let element;
     if (typeof elementOrSelector === 'string') {
@@ -32,60 +36,70 @@ let Game = {
     orderTimerInterval: null,
     
     init() {
+        DOMCache.init();
         this.bindEvents();
         this.loadSettings();
         this.startCustomerSpawner();
         this.startGameLoop();
+        
+        window.addEventListener('beforeunload', () => {
+            TimerManager.clearAll();
+            EventBinder.clear();
+        });
     },
     
     bindEvents() {
-        safeAddEventListener('login-btn', 'click', () => this.handleLogin());
-        safeAddEventListener('guest-btn', 'click', () => this.handleGuestLogin());
-        safeAddEventListener('username-input', 'keypress', (e) => {
+        EventBinder.bind('login-btn', 'click', () => this.handleLogin());
+        EventBinder.bind('guest-btn', 'click', () => this.handleGuestLogin());
+        EventBinder.bind('username-input', 'keypress', (e) => {
             if (e.key === 'Enter') this.handleLogin();
         });
         
         safeQuerySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            EventBinder.bind(btn, 'click', (e) => {
                 const screen = e.currentTarget.dataset.screen;
                 this.switchScreen(screen);
             });
         });
         
         safeQuerySelectorAll('.back-btn').forEach(btn => {
-            btn.addEventListener('click', () => this.switchScreen('main'));
+            EventBinder.bind(btn, 'click', () => this.switchScreen('main'));
         });
         
-        safeAddEventListener('settings-btn', 'click', () => this.showSettings());
-        safeAddEventListener('help-btn', 'click', () => this.openHelp());
-        safeAddEventListener('close-settings-btn', 'click', () => this.hideSettings());
-        safeAddEventListener('sound-toggle', 'change', (e) => this.toggleSound(e.target.checked));
-        safeAddEventListener('bgm-toggle', 'change', (e) => this.toggleBGM(e.target.checked));
-        safeAddEventListener('reset-game-btn', 'click', () => this.resetGame());
+        EventBinder.bind('settings-btn', 'click', () => this.showSettings());
+        EventBinder.bind('help-btn', 'click', () => this.openHelp());
+        EventBinder.bind('close-settings-btn', 'click', () => this.hideSettings());
+        EventBinder.bind('sound-toggle', 'change', (e) => this.toggleSound(e.target.checked));
+        EventBinder.bind('bgm-toggle', 'change', (e) => this.toggleBGM(e.target.checked));
+        EventBinder.bind('reset-game-btn', 'click', () => this.resetGame());
         
-        safeAddEventListener('complete-btn', 'click', () => this.completeOrder());
-        safeAddEventListener('clear-btn', 'click', () => this.clearCup());
-        safeAddEventListener('cancel-order-btn', 'click', () => this.cancelOrder());
+        EventBinder.bind('complete-btn', 'click', () => this.completeOrder());
+        EventBinder.bind('clear-btn', 'click', () => this.clearCup());
+        EventBinder.bind('cancel-order-btn', 'click', () => this.cancelOrder());
         
         safeQuerySelectorAll('.upgrade-tabs .tab-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => this.switchUpgradeTab(e.target.dataset.tab));
+            EventBinder.bind(btn, 'click', (e) => this.switchUpgradeTab(e.target.dataset.tab));
         });
         
         safeQuerySelectorAll('.decorate-tabs .tab-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => this.switchDecorateTab(e.target.dataset.tab));
+            EventBinder.bind(btn, 'click', (e) => this.switchDecorateTab(e.target.dataset.tab));
         });
         
-        safeAddEventListener('upgrade-shop-btn', 'click', () => this.upgradeShop());
-        safeAddEventListener('save-layout-btn', 'click', () => this.saveLayout());
+        EventBinder.bind('upgrade-shop-btn', 'click', () => this.upgradeShop());
+        EventBinder.bind('save-layout-btn', 'click', () => this.saveLayout());
     },
     
     handleLogin() {
-        const username = document.getElementById('username-input').value.trim();
-        if (username.length < 2) {
-            this.showToast('请输入至少2个字符的用户名');
+        const usernameInput = DOMCache.getById('username-input');
+        const rawUsername = usernameInput.value.trim();
+        const sanitizedUsername = InputValidator.sanitizeInput(rawUsername);
+        
+        if (!InputValidator.validateUsername(sanitizedUsername)) {
+            this.showToast('用户名只能包含中文、英文字母、数字和下划线，长度2-12个字符');
             return;
         }
-        GameState.user.name = username;
+        
+        GameState.user.name = sanitizedUsername;
         this.saveGame();
         this.showMainScreen();
     },
@@ -146,7 +160,7 @@ let Game = {
     bindHelpNavigation() {
         const navItems = document.querySelectorAll('.help-nav-item');
         navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
+            EventBinder.bind(item, 'click', (e) => {
                 const section = e.currentTarget.dataset.section;
                 this.switchHelpSection(section);
             });
@@ -154,18 +168,15 @@ let Game = {
         
         const closeBtn = document.getElementById('close-help-btn');
         if (closeBtn) {
-            closeBtn.removeEventListener('click', this.handleCloseHelp);
-            closeBtn.addEventListener('click', () => this.closeHelp());
+            EventBinder.bind(closeBtn, 'click', () => this.closeHelp());
         }
         
         const overlay = document.querySelector('.help-overlay');
         if (overlay) {
-            overlay.removeEventListener('click', this.handleCloseHelp);
-            overlay.addEventListener('click', () => this.closeHelp());
+            EventBinder.bind(overlay, 'click', () => this.closeHelp());
         }
         
-        document.removeEventListener('keydown', this.handleHelpKeydown);
-        document.addEventListener('keydown', (e) => {
+        EventBinder.bind(document, 'keydown', (e) => {
             if (e.key === 'Escape') {
                 const helpPanel = document.getElementById('help-panel');
                 if (helpPanel && !helpPanel.classList.contains('hidden')) {
@@ -266,7 +277,8 @@ let Game = {
     startCustomerSpawner() {
         const spawnCustomer = () => {
             if (this.currentScreen === 'main') {
-                const customerCount = document.querySelectorAll('.customer').length;
+                const customerQueue = DOMCache.getById('customer-queue');
+                const customerCount = customerQueue.children.length;
                 const maxCapacity = GameData.shopUpgrades[GameState.shop.level - 1].capacity;
                 
                 if (customerCount < maxCapacity) {
@@ -275,7 +287,7 @@ let Game = {
             }
         };
         
-        this.customerSpawnTimer = setInterval(spawnCustomer, GameConfig.baseCustomerInterval);
+        this.customerSpawnTimer = TimerManager.register(spawnCustomer, GameConfig.BASE_CUSTOMER_INTERVAL, 'spawn');
     },
     
     spawnCustomer() {
@@ -324,7 +336,7 @@ let Game = {
             '<div class="patience-bar' + (patienceClass ? ' ' + patienceClass : '') + '" style="width: ' + patiencePercent + '%"></div>' +
             '</div>';
         
-        customerEl.addEventListener('click', () => this.selectCustomer(customer));
+        EventBinder.bind(customerEl, 'click', () => this.selectCustomer(customer));
         queue.appendChild(customerEl);
         
         this.startPatienceTimer(customer);
@@ -334,7 +346,7 @@ let Game = {
         const updatePatience = () => {
             const customerEl = document.getElementById('customer-' + customer.id);
             if (!customerEl) {
-                clearInterval(customer.patienceInterval);
+                TimerManager.cleanupByTag('patience-' + customer.id);
                 return;
             }
             
@@ -355,7 +367,7 @@ let Game = {
             }
         };
         
-        customer.patienceInterval = setInterval(updatePatience, 100);
+        customer.patienceInterval = TimerManager.register(updatePatience, PATIENCE_UPDATE_INTERVAL, 'patience-' + customer.id);
     },
     
     selectCustomer(customer) {
@@ -401,7 +413,7 @@ let Game = {
     
     cancelOrder() {
         if (this.currentOrder) {
-            clearInterval(this.orderTimerInterval);
+            TimerManager.cleanupByTag('order-timer');
             this.customerLeave(this.currentOrder, false);
             this.currentOrder = null;
             this.renderActiveOrder();
@@ -410,7 +422,7 @@ let Game = {
     },
     
     startOrderTimer() {
-        let timeLeft = this.currentOrder.order.ingredients.length * 3;
+        let timeLeft = this.currentOrder.order.ingredients.length * TIME_PER_INGREDIENT;
         
         const updateTimer = () => {
             const timerEl = document.getElementById('order-timer');
@@ -424,16 +436,14 @@ let Game = {
             }
             
             if (timeLeft <= 0) {
-                clearInterval(this.orderTimerInterval);
+                TimerManager.cleanupByTag('order-timer');
                 this.orderTimeout();
             }
             timeLeft--;
         };
         
-        if (this.orderTimerInterval) {
-            clearInterval(this.orderTimerInterval);
-        }
-        this.orderTimerInterval = setInterval(updateTimer, 1000);
+        TimerManager.cleanupByTag('order-timer');
+        this.orderTimerInterval = TimerManager.register(updateTimer, 1000, 'order-timer');
         updateTimer();
     },
     
@@ -459,7 +469,7 @@ let Game = {
         }
         
         if (customer.patienceInterval) {
-            clearInterval(customer.patienceInterval);
+            TimerManager.cleanupByTag('patience-' + customer.id);
         }
         
         if (this.currentOrder && this.currentOrder.id === customer.id) {
@@ -505,7 +515,7 @@ let Game = {
                 '<span class="recipe-icon">' + recipe.icon + '</span>' +
                 '<span class="recipe-name">' + recipe.name + '</span>';
             
-            item.addEventListener('click', () => this.selectRecipe(recipe));
+            EventBinder.bind(item, 'click', () => this.selectRecipe(recipe));
             list.appendChild(item);
         });
     },
@@ -534,7 +544,7 @@ let Game = {
                 '<span class="ingredient-icon">' + ing.icon + '</span>' +
                 '<span class="ingredient-name">' + ing.name + '</span>';
             
-            item.addEventListener('click', () => this.addIngredient(ing));
+            EventBinder.bind(item, 'click', () => this.addIngredient(ing));
             bar.appendChild(item);
         });
     },
@@ -626,7 +636,7 @@ let Game = {
             return;
         }
         
-        clearInterval(this.orderTimerInterval);
+        TimerManager.cleanupByTag('order-timer');
         
         const recipe = this.currentOrder.order;
         const basePrice = recipe.price;
@@ -636,7 +646,7 @@ let Game = {
         let earnedExp = Math.floor(basePrice / 5);
         
         if (this.currentOrder.patience / this.currentOrder.maxPatience > 0.8) {
-            finalPrice = Math.floor(finalPrice * GameConfig.perfectBonus);
+            finalPrice = Math.floor(finalPrice * GameConfig.PERFECT_BONUS);
             earnedExp *= 2;
             GameState.stats.perfectOrders++;
             this.showToast('完美服务！');
@@ -648,8 +658,8 @@ let Game = {
             GameState.stats.speedOrders++;
         }
         
-        if (Math.random() < GameConfig.tipChance) {
-            const tip = Math.floor(finalPrice * GameConfig.baseTipPercent);
+        if (Math.random() < GameConfig.TIP_CHANCE) {
+            const tip = Math.floor(finalPrice * GameConfig.BASE_TIP_PERCENT);
             finalPrice += tip;
         }
         
@@ -760,7 +770,7 @@ let Game = {
                 '升级 (' + cost + ' 🪙)' +
                 '</button>';
             
-            item.querySelector('.upgrade-item-btn').addEventListener('click', () => this.upgradeEquipment(eq.id));
+            EventBinder.bind(item.querySelector('.upgrade-item-btn'), 'click', () => this.upgradeEquipment(eq.id));
             list.appendChild(item);
         });
     },
@@ -808,7 +818,7 @@ let Game = {
                 '雇佣 (' + emp.cost + ' 🪙)' +
                 '</button>';
             
-            item.querySelector('.upgrade-item-btn').addEventListener('click', () => this.hireEmployee(emp));
+            EventBinder.bind(item.querySelector('.upgrade-item-btn'), 'click', () => this.hireEmployee(emp));
             list.appendChild(item);
         });
     },
@@ -865,7 +875,7 @@ let Game = {
                 '<span class="decoration-name">' + deco.name + '</span>' +
                 (owned > 0 ? '<span class="decoration-price">已拥有</span>' : '<span class="decoration-price">' + deco.price + ' 🪙</span>');
             
-            item.addEventListener('click', () => this.buyDecoration(deco));
+            EventBinder.bind(item, 'click', () => this.buyDecoration(deco));
             store.appendChild(item);
         });
     },
@@ -949,9 +959,9 @@ let Game = {
         
         requestAnimationFrame(gameLoop);
         
-        setInterval(() => {
+        TimerManager.register(() => {
             this.saveGame();
-        }, GameConfig.saveInterval);
+        }, GameConfig.SAVE_INTERVAL, 'autosave');
     },
     
     saveGame() {
@@ -965,7 +975,7 @@ let Game = {
         
         setTimeout(() => {
             toast.classList.add('hidden');
-        }, 3000);
+        }, TOAST_DURATION);
     }
 };
 

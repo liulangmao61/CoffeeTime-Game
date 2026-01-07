@@ -73,7 +73,7 @@ const GameData = {
             description: '日式抹茶的清新风味'
         }
     ],
-    
+
     ingredients: [
         { id: 'coffee', name: '咖啡豆', icon: '🫘' },
         { id: 'water', name: '水', icon: '💧' },
@@ -86,7 +86,7 @@ const GameData = {
         { id: 'ice', name: '冰块', icon: '🧊' },
         { id: 'cinnamon', name: '肉桂', icon: '🌿' }
     ],
-    
+
     customerTypes: [
         { id: 'office', name: '上班族', icon: '👔', patience: 30, tipMultiplier: 1.0 },
         { id: 'student', name: '学生', icon: '🎒', patience: 25, tipMultiplier: 0.9 },
@@ -97,7 +97,7 @@ const GameData = {
         { id: 'gamer', name: '玩家', icon: '🎮', patience: 20, tipMultiplier: 1.4 },
         { id: 'foodie', name: '美食家', icon: '👨‍🍳', patience: 35, tipMultiplier: 1.6 }
     ],
-    
+
     achievements: [
         {
             id: 'first_coffee',
@@ -196,7 +196,7 @@ const GameData = {
             condition: () => GameState.stats.consecutiveDays >= 7
         }
     ],
-    
+
     equipment: [
         {
             id: 'machine_basic',
@@ -259,7 +259,7 @@ const GameData = {
             description: '展示甜点吸引顾客'
         }
     ],
-    
+
     decorations: [
         { id: 'plant1', name: '绿植', icon: '🪴', price: 50, category: 'plant', bonus: 1 },
         { id: 'plant2', name: '花盆', icon: '🌸', price: 80, category: 'plant', bonus: 2 },
@@ -274,7 +274,7 @@ const GameData = {
         { id: 'deco5', name: '书籍', icon: '📚', price: 80, category: 'deco', bonus: 1 },
         { id: 'deco6', name: '相框', icon: '🖼️', price: 120, category: 'deco', bonus: 2 }
     ],
-    
+
     shopUpgrades: [
         { level: 1, capacity: 3, unlockRecipes: 2 },
         { level: 2, capacity: 4, unlockRecipes: 3 },
@@ -287,7 +287,7 @@ const GameData = {
         { level: 9, capacity: 11, unlockRecipes: 8 },
         { level: 10, capacity: 12, unlockRecipes: 8 }
     ],
-    
+
     levelThresholds: [
         { level: 1, exp: 0 },
         { level: 2, exp: 100 },
@@ -303,12 +303,12 @@ const GameData = {
 };
 
 const GameConfig = {
-    baseCustomerInterval: 5000,
-    minCustomerInterval: 2000,
-    tipChance: 0.3,
-    baseTipPercent: 0.1,
-    perfectBonus: 1.5,
-    speedBonus: 1.2,
-    saveInterval: 30000,
-    maxCustomers: 6
+    BASE_CUSTOMER_INTERVAL: 5000,
+    MIN_CUSTOMER_INTERVAL: 2000,
+    TIP_CHANCE: 0.3,
+    BASE_TIP_PERCENT: 0.1,
+    PERFECT_BONUS: 1.5,
+    SPEED_BONUS: 1.2,
+    SAVE_INTERVAL: 30000,
+    MAX_CUSTOMERS: 6
 };
